@@ -1,0 +1,2245 @@
+<!DOCTYPE html>
+<html lang="en-US">
+   <head>
+      <title>Arcade</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+      <link href="https://fonts.googleapis.com/css?family=Google+Sans" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+      <link href="https://cdn-images.mailchimp.com/embedcode/classic-071822.css" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+      <style>
+         hr {
+         border: 1px solid #FFD548;
+         opacity: 100%;
+         border-radius: 2px;
+         }
+         #Header1 {
+         display: block;
+         }
+         #Header2 {
+         display: none;
+         }
+         @media all and (max-width: 766px) {
+         #Header1 {
+         display: none;
+         }
+         #Header2 {
+         display: block;
+         }
+         }
+         @media all and (max-width:766px){
+         .faq-header {
+         font-size: medium;
+         }
+         }
+         .footer-li{
+         display: inline;
+         font-size: large;
+         font-family: 'Google Sans';
+         }
+         #mainpage-title {
+         font-family: "Press Start 2P";
+         color: #FFD548;
+         }
+         #card-title {
+         font-family: "Press Start 2P";
+         color: #FFD548;
+         }
+         .card-title {
+         font-family: "Press Start 2P";
+         color: #FFD548;
+         }
+         .card {
+         background-color: #292D33;
+         color: white;
+         }
+         img {
+         width: 50%;
+         }
+         .dark-back {
+         background-color: #174689;
+         }
+         .playlist-bg {
+         background-color: #174689;
+         }
+         .black-bg {
+         background-color: #1B1C24;
+         }
+         /*Style for the FAQ widget*/
+         section {
+         /* min-height: 100vh; */
+         width: 80%;
+         margin: 0 auto;
+         display: flex;
+         flex-direction: column;
+         font-family: 'Google Sans';
+         background-color: #1B1C24;
+         border-radius: 10px;
+         box-shadow: 5px 5px 10px 5px #0c2447;
+         color: #444;
+         cursor: pointer;
+         padding: 60px;
+         border: none;
+         text-align: left;
+         outline: none;
+         font-size: 10px;
+         transition: 0.4s;
+         border-bottom: #444;
+         }
+         .section {
+         padding: 0 15px;
+         background-color: white;
+         max-height: 0;
+         overflow: hidden;
+         transition: max-height 0.2s ease-out;
+         }
+         .active,
+         .faq:hover {
+         background-color: #1B1C24;
+         }
+         .section:after {
+         content: '\002B';
+         color:  #1B1C24;
+         float: right;
+         margin-left: 5px;
+         }
+         title {
+         font-size: 2rem;
+         margin: 2rem 0;
+         text-align: left;
+         color: white;
+         }
+         .faq {
+         border-bottom: 2px solid #de5246;
+         cursor: pointer;
+         }
+         .question h3 {
+         font-size: 14px;
+         margin: 0;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         padding: 1rem;
+         color: white;
+         }
+         .faq .question h3:after {
+         content: '\002B';
+         -webkit-transition: .3s ease;
+         -moz-transition: .3s ease;
+         -o-transition: .3s ease;
+         transition: .3s ease;
+         }
+         .faq.active .question h3:after {
+         content: '\2212';
+         -webkit-transition: .3s ease;
+         -moz-transition: .3s ease;
+         -o-transition: .3s ease;
+         transition: .3s ease;
+         }
+         .answer {
+         display: none;
+         overflow: hidden;
+         background-color: #ffffff;
+         transition: all 0.25s cubic-bezier(0.5, 0, 0.1, 1);
+         }
+         .answer p {
+         margin: 10px 0;
+         font-size: 14px;
+         text-align: left;
+         padding: 10px;
+         }
+         .faq.active .answer {
+         display: block;
+         transition: all 0.25s cubic-bezier(0.5, 0, 0.1, 1);
+         }
+         .input-faq {
+         font-family: 'Google Sans';
+         font-size: 20px;
+         height: 2000px;
+         font-weight: bold;
+         text-align: left;
+         color: #de5246;
+         padding: 6px 10px;
+         margin: 3px 0;
+         box-sizing: border-box;
+         height: 36px;
+         border-style: solid;
+         border-color: #de5246;
+         border-radius: 1px 1px 1px 1px;
+         }
+         .imageEmpty {
+         display: none;
+         }
+         p {
+         font-family: "Google Sans";
+         color: white;
+         }
+         .asterisk {
+         color: red;
+         }
+         h5 {
+         color: white;
+         margin-top: 10px;
+         }
+         label {
+         color: white;
+         }
+         .answer-text {
+         color: #1B1C24;
+         }
+         #mce-success-response {
+         color: #34A853;
+         font-weight: bold;
+         font-family: 'Google Sans';
+         }
+         #mce-error-response {
+         color: #de5246;
+         }
+         .list-marker{
+         font-size: xx-large;
+         padding-right: 12px;
+         font-family: "Press Start 2P";
+         }
+         .list-item{
+         padding:20px;
+         }
+         a{
+         color: #FFD548;
+         }
+         .background-gradient{
+         background: url('https://i.ibb.co/x33vrk1/actual-backgrd.png'),linear-gradient(#174689, #FF82CE);
+         backdrop-filter: blur(100%);
+         background-repeat: repeat,no-repeat;
+         background-position: center;
+         background-blend-mode:multiply;
+         }
+         .background-gradient1{
+         background: url('https://i.ibb.co/FVQ0YVZ/prize-bgc.png');
+         backdrop-filter: blur(100%);
+         background-repeat: no-repeat;
+         background-position:center;
+         background-blend-mode:normal;
+         background-size:cover;
+         }
+         .background-gradient2{
+         background: url('https://i.ibb.co/6bWHjRW/header-bgc.png');
+         backdrop-filter: blur(100%);
+         background-position:center;
+         background-blend-mode:normal;
+         background-size:cover;
+         }
+         .prize-section-header{
+         font-family: "Press Start 2P";
+         color: #FFD548;
+         }
+         .point-marker{
+         font-size: medium;
+         padding-right: 12px;
+         font-family: "Press Start 2P";
+         }
+         .second-row{
+         padding-bottom: 100px;
+         }
+         .btn{
+         background-color: #FF82CE;
+         font-family: "Press Start 2P";
+         font-size: medium;
+         color: #1B1C24;
+         border: none;
+         padding-left: 20px;
+         padding-right: 20px;
+         }
+         .btn:hover{
+         background-color: #f94db4;
+         }
+         table {
+         color: white;
+         }
+         a:hover{
+         color: white;
+         }
+         #result1 {
+         text-align: center;
+         margin-top: 20px;
+         color: antiquewhite;
+         }
+         #result2 {
+         text-align: center;
+         margin-top: 20px;
+         color: antiquewhite;
+         }
+         .spinner-border {
+         display: none;
+         }
+         .topnav {
+         overflow: hidden;
+         background-color: #1b1c24;
+         position: fixed;
+         width: 100%;
+         z-index:100;
+         top:0px;
+         }
+         .topnav li {
+         float: left;
+         display: block;
+         color: #f2f2f2; 
+         text-align: center;
+         padding: 14px 16px;
+         text-decoration: none;
+         font-size: 17px;
+         cursor: pointer;
+         }
+         .topnav li:hover {
+         background-color: #333;
+         color: white;
+         }
+         .topnav .icon {
+         display: none;
+         }
+         @media screen and (max-width: 600px) {
+         .topnav li:not(:first-child) {display: none;}
+         .topnav li.icon {
+         float: right;
+         display: block;
+         }
+         }
+         @media screen and (max-width: 600px) {
+         .topnav {position: relative;}
+         .topnav.responsive {position: relative;}
+         .topnav.responsive .icon {
+         position: absolute;
+         right: 0;
+         top: 0;
+         }
+         .topnav.responsive li {
+         float: none;
+         display: block;
+         text-align: left;
+         }
+         }
+         #scrollBtn {
+         display: none;
+         position: fixed;
+         bottom: 15px;
+         right: 15px;
+         padding: 7px 14px;
+         background-color: #333;
+         color: #fff;
+         border: none;
+         outline: none;
+         cursor: pointer;
+         z-index:100;
+         border-radius:5px;
+         font-size: 12px;
+         }
+         #scrollBtn.show {
+         display: block;
+         }
+         .bannerFix {
+         margin-top:53px;
+         }
+         @media screen and (max-width: 600px){
+         .bannerFix {margin-top:0px;}
+         }
+         .hBW7Hb{
+background-color: #34A853;
+}
+.buttonT{
+   height: 4rem;
+   width: 10rem;
+   background-color: #80B3FF;
+   border : 1px solid red
+}
+.dropbtn {
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: relative;
+  background-color: #f1f1f1;
+  min-width: 100px;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 6px 6px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+      </style>
+   </head>
+   <body>
+
+      
+      <button onclick="scrollToTop('top')" id="scrollBtn">Back to Top</button> 
+     <div class="englishParentContainer">
+      <div class="topnav" id="myTopnav">
+         
+         <ul>
+            <li onclick="scrollToTop('playnow')" class="active">Play Now</li>
+            <!-- <li onclick="scrollToTop('prize')">Prize Counter</li>
+               <li onclick="scrollToTop('pointsCalculator')">Points Calculator</li>
+               <li onclick="scrollToTop('gameover')">Game Over</li> -->
+            <li onclick="scrollToTop('faq')">FAQs</li>
+            <li class="icon" onclick="myFunction()">
+               <i class="fa fa-bars" style="color: white;"></i>
+            </li>
+            <li><a href="https://www.cloudskillsboost.google/games/4422?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23-September-level3" style="color: white; text-decoration: none;">Explore GenAI</a></li>
+            
+            <li>
+                <div id="google_translate_element"></div>
+                <div class="dropdown">
+                <!--  <div>Language</div>
+                <div class="dropdown-content">
+                  <a href="#">English</a>
+                  <a href="#">Spanish</a>
+                  <a href="#">Japanese</a>
+                </div>
+              </div> -->
+
+			</li>
+         </ul>
+   
+         </div>
+      <div class="bannerFix">
+         <img src="https://i.ibb.co/1sWy3Kz/Arcade-Web-Header2023.png"
+            alt="GC-arcade-header-desktop-Edited" style="width: 100%;" class="responsive" id="Header1">
+         <img src="https://i.ibb.co/HFQnW3m/Mobileheader-Arcade2023.png"
+            alt="GC-arcade-header-mobile-Edited" style="width: 100%;" class="responsive" id="Header2">
+      </div>
+      <!-- mailchimp form -->
+      <div class="dark-back p-1" style="background-image: url('https://i.ibb.co/SRMTB41/BGimg-form.png');">
+         <div class="container">
+            <div id="mc_embed_signup">
+               <form
+                  action="https://qwiklabs.us19.list-manage.com/subscribe/post?u=dd8bfe9d5ef98dcbabc9743ad&amp;id=7b8592ee03&amp;f_id=00dfc9e0f0"
+                  method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate"
+                  target="_blank" novalidate>
+                  <div id="mc_embed_signup_scroll">
+                     <div class="row justify-content-center">
+                        <div class="col-md-5">
+                           <button class="buttonT">  Translate</button>
+                           <h5>REQUIRED for prizes: Subscribe to activate the Arcade for your account:</h5>
+                        </div>
+                        <div class="col-md-4">
+                           <!-- Input field -->
+                           <div id="mc-field-group">
+                              <label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label>
+                              <input type="email" value="" name="EMAIL" class="form-control required-email"
+                                 id="mce-EMAIL" required>
+                              <span id="mce-EMAIL-HELPERTEXT" class="helper_text" style="display:none"></span>
+                           </div>
+                           <!-- Hidden name tags -->
+                           <div hidden="true">
+                              <input type="hidden" name="tags" value="1381188">
+                           </div>
+                           <!-- error/success messages -->
+                           <div id="mce-responses" class="clear">
+                              <div class="response" id="mce-error-response" style="display:none"></div>
+                              <div class="response" id="mce-success-response" style="display:none"></div>
+                           </div>
+                           <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                           <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                              <input type="text" name="b_dd8bfe9d5ef98dcbabc9743ad_7b8592ee03" tabindex="-1"
+                                 value="">
+                           </div>
+                        </div>
+                        <div class="col-md-2">
+                           <button type="submit" name="subscribe" id="mc-embedded-subscribe"
+                              class="btn btn-success" style="margin-top: 35px;">Subscribe</button>
+                        </div>
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+      <!-- mailchimp form ends -->
+
+      <!-- Arcade Level 3 div starts here -->
+      <div class="dark-back pt-4 py-3" style="background-image: url('https://i.ibb.co/SRMTB41/BGimg-form.png');">
+         <div class="container">
+            <div class="card">
+               <div class="row no-gutters">
+                  <div class="col-lg-6 align-items-center">
+                     <div class="card-body">
+                        <img src="https://i.ibb.co/p4gkmnk/Level3-Sept.png" alt="dhjbnfkm-xkja" class="card-img-top">
+                     </div>
+                  </div>
+                  <div class="col-lg-6 p-5">
+              
+                     <br>
+                     <h3 class="card-title">Level up your GenAI skills</h3>
+                     <p class="pt-2">Gain hands-on experience with Google Cloud's GenAI tools and techniques - and earn your first Google Cloud GenAI game badge!</p>
+                     <p class="pt-2"><span style="color:#f94db4;">Access code:</span> 1q-genai-672</p>
+                     <p>Arcade points: 1</p>
+                     <a href="https://www.cloudskillsboost.google/games/4422?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23-September-level3"><button class="btn mt-1">START!</button></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <br>
+         <br>
+         <br>
+      </div>
+            <!-- Arcade Trivia div starts here -->
+            <!-- <div class="dark-back pt-4 py-3" style="background-image: url('https://i.ibb.co/SRMTB41/BGimg-form.png');">
+               <div class="container">
+                  <div class="card">
+                     <div class="row no-gutters">
+                        <div class="col-lg-6 p-5 my-2">
+                           <br>
+                           <h3 class="card-title">Trivia - with a sprinkle of Gen AI!</h3>
+                           <p class="pt-2">Answer Trivia August week 5 questions and put your Gen AI knowledge to test- The best way to check your progress!</p>
+                           <p>Arcade points: 1</p>
+                           <a href="https://www.cloudskillsboost.google/quests/333?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23-august-trivia"><button class="btn mt-1">START!</button></a>
+                        </div>
+                        <div class="col-lg-6 align-items-center">
+                           <div class="card-body">
+                              <img src="https://i.ibb.co/QPyZ1W9/LP-Trivia.jpg" alt="dhjbnfkm-xkja" class="card-img-top">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <br>
+               <br>
+               <br>
+            </div> -->
+<!-- arcade games -->
+<div class="dark-back " style="background-image: url('https://i.ibb.co/SRMTB41/BGimg-form.png');">
+   <div class="container">
+      <center>
+         <div class="row pt-5 align-items-center">
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-2">
+               <h5 class="card-title">LEVEL 1</h5>
+               <p class="card-text" style="font-size: 14px;">Play to learn and earn a Google Cloud badge!</p>
+               <div class="card">
+                  <div class="card-body">
+                     <img src="https://i.ibb.co/8zVr0tN/Arcade-Level1-Sept.png" class="card-img-top"
+                        alt="Card Image 1">
+                  </div>
+               </div>
+               <p class="pt-2"><span style="color:#f94db4;"></span></p>
+               <p class="pt-2"><span style="color:#f94db4;">Access code:</span> 1q-sports-900</p>
+               <p>Arcade points: 1</p>
+               <a href="https://www.cloudskillsboost.google/games/4423?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23-September-level3"><button class="btn mt-1">START!</button></a>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-2">
+               <h5 class="card-title">LEVEL 2</h5>
+               <p class="card-text" style="font-size: 14px;">Play to learn and earn a Google Cloud badge!</p>
+               <div class="card">
+                  <div class="card-body">
+                     <img src="https://i.ibb.co/k1B7XyC/Arcade-Sept-Level2.png" class="card-img-top"
+                        alt="Card Image 1">
+                  </div>
+               </div>
+               <p class="pt-2"><span style="color:#f94db4;"></span></p>
+               <p class="pt-2"><span style="color:#f94db4;">Access code:</span> 1q-datalake-344</p>
+               <p>Arcade points: 1</p>
+               <a href="https://www.cloudskillsboost.google/games/4424?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23-September-level3"><button class="btn mt-1">START!</button></a>
+            </div>
+            <!-- <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
+               <h5 class="card-title">LEVEL 3</h5>
+               <p class="card-text" style="font-size: 14px;">Earn a Google Cloud badge in GenAI!</p>
+               <div class="card">
+                  <div class="card-body">
+                     <img src="https://i.ibb.co/rxTx1H2/LP-Level-3.png" class="card-img-top"
+                        alt="Card Image 1">
+                  </div>
+               </div>
+               <p class="pt-2"><span style="color:#f94db4;"></span></p>
+               <p class="pt-2"><span style="color:#f94db4;">Access code:</span> 1q-genai-384</p>
+               <p>Arcade points: 1</p>
+               <a href="https://www.cloudskillsboost.google/games/4303?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23-august-level3"><button class="btn mt-1">START!</button></a>
+            </div> -->
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-2">
+               <h5 class="card-title">TRIVIA</h5>
+               <p class="card-text" style="font-size: 14px;">Brain teaser to test your knowledge and skills!</p>
+               <div class="card">
+                  <div class="card-body">
+                     <img src="https://i.ibb.co/FDHVsSd/September-Trivia-Image.png" class="card-img-top"
+                        alt="Card Image 1">
+                  </div>
+               </div>
+               <p class="pt-2"><span style="color:#f94db4;"></span></p>
+               <p class="pt-2"><span style="color:#f94db4;"></span></p>
+               <br>
+               <p>Arcade points: 1</p>
+               <a href="https://www.cloudskillsboost.google/quests/336?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23-September-trivia"><button class="btn mt-1">START!</button></a>
+            </div>
+         </div>
+      </center>
+   </div>
+   <br><br>
+</div>
+
+      <!-- test div -->
+      <div class="dark-back " style="background-image: url('https://i.ibb.co/SRMTB41/BGimg-form.png');">
+         <div class="container">
+            <div class="row pt-2 pb-2 instRow bg-transparent background-gradient" style="display:flex">
+               <div class="col col-lg-6 col-md-6 col-sm-12 col-12 mb-2 " style="display:flex" >
+                  <div class="instCard1Container card" style="display:flex">
+                     <div class="card-body  d-flex align-items-start" style="flex-direction: column">
+                        <h5 class=" english card-title">HOW IT WORKS</h5>
+                        <div class=" py-2">
+                           <div>
+                              <img src="https://i.ibb.co/MhsMvRw/borderline-removebg-preview.png" alt="">
+                              <table>
+                                 <tr>
+                                    <td class="list-marker" colspan="2">01</td>
+                                    <td class="list-item">Subscribe to active Arcade emails for your account including prizes and codes</td>
+                                 </tr>
+                                 <tr>
+                                    <td class="list-marker" colspan="2">02</td>
+                                    <td class="list-item">Join Google Cloud Skills Boost. You don't need a new account if you’re already registered.</td>
+                                 </tr>
+                                 <tr>
+                                    <td class="list-marker" colspan="2">03</td>
+                                    <td class="list-item">Play games to learn skills, earn badges and get arcade points. We suggest starting at level 1 if you're new to cloud!</td>
+                                 </tr>
+                                 <tr>
+                                    <td class="list-marker" colspan="2">04</td>
+                                    <td class="list-item">Enroll in Skill Badges to help you complete game tasks and get more Arcade points.</td>
+                                 </tr>
+                                 <tr>
+                                    <td class="list-marker" colspan="2">05</td>
+                                    <td class="list-item first-card">REDEEM points at the prize counter. <a href="https://youtube.com/playlist?list=PLYx9Jx5nax9uxX7fOhufFf7gkXyS76tbh">View previous prizes</a></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col col-lg-6 col-md-6 col-sm-12 col-12 mb-2" style="display:flex" >
+                  <div class="instCard2Container card" style="display:flex; ">
+                     <div class="card-body text-left d-flex align-items-start" style="flex-direction: column">
+                        <h5 class="card-title">POINTS SYSTEM</h5>
+                        <div class=" py-2">
+                           <div>
+                              <img src="https://i.ibb.co/MhsMvRw/borderline-removebg-preview.png" alt="">
+                           </div>
+                        </div>
+                        <table>
+                           <tr>
+                              <td class="point-marker">LEVEL 1</td>
+                              <td class="img-list-item"><img src="https://i.ibb.co/dpRNn04/Coin-Image-removebg-preview.png" alt="" style="width: 60px;"></td>
+                              <td style="padding-left: 10px;"> x1 game badge = 1 point</td>
+                           </tr>
+                           <tr>
+                              <td class="point-marker">LEVEL 2</td>
+                              <td class="img-list-item"><img src="https://i.ibb.co/dpRNn04/Coin-Image-removebg-preview.png" alt="" style="width: 60px;"></td>
+                              <td style="padding-left: 10px;"> x1 game badge = 1 point</td>
+                           </tr>
+                           <tr>
+                              <td class="point-marker">LEVEL 3</td>
+                              <td class="img-list-item"><img src="https://i.ibb.co/dpRNn04/Coin-Image-removebg-preview.png" alt="" style="width: 60px;"></td>
+                              <td style="padding-left: 10px;"> x1 game badge = 1 point</td>
+                           </tr>
+                           <tr>
+                              <td class="point-marker">TRIVIA</td>
+                              <td class="img-list-item"><img src="https://i.ibb.co/hMHPYzV/triviaicon-removebg-preview.png" alt="" style="width: 60px;"></td>
+                              <td style="padding-left: 10px;"> x1 game badge = 1 point</td>
+                           </tr>
+                           <tr>
+                              <td class="point-marker">SKILL BADGE</td>
+                              <td class="img-list-item"><img src="https://i.ibb.co/Sc3wx7S/GC-arcade-skill-badge.png" alt="" style="width: 60px;"></td>
+                              <td style="padding-left: 10px;"> x3 badges = 1 point</td>
+                           </tr>
+                        </table>
+                        <div class="py-4">
+                           <div class="instCard2S2ParentContainer ">
+                              <div>
+                                 <img src="https://i.ibb.co/MhsMvRw/borderline-removebg-preview.png" alt="">
+                              </div>
+                              <p class="point-marker card-title" style="margin-bottom: 13px;">EXAMPLE</p>
+                           </div>
+                           <div class="instCard2S2Container">
+                              <div class="instCard2S2Pts row">
+                                 <div class="col-lg-8 col-md-6 col-sm-12 col-12" >
+                                    <img src="https://i.ibb.co/Sc3wx7S/GC-arcade-skill-badge.png" alt="" style="width:70px;height: min-content;padding-right: 3px;">
+                                    <img src="https://i.ibb.co/Sc3wx7S/GC-arcade-skill-badge.png" alt="" style="width:70px;height: min-content;padding-right: 3px;">
+                                    <img src="https://i.ibb.co/Sc3wx7S/GC-arcade-skill-badge.png" alt="" style="width:70px;height: min-content;padding-right: 3px;">
+                                    <img src="https://i.ibb.co/hMHPYzV/triviaicon-removebg-preview.png" alt="" style="width:70px;height: min-content;padding-right: 3px;">
+                                    <img src="https://i.ibb.co/dpRNn04/Coin-Image-removebg-preview.png" alt="" style="width:70px;height: min-content">
+                                 </div>
+                                 <div style="font-size: 19px;padding-top: 10px;text-align: left; padding-right: 0px" class="points- list-marker exPts col-lg-4 col-md-6 col-sm-12 col-12"> = 3 points</div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="playnow"></div>
+         </div>
+      </div>
+      <!-- test div ends -->
+
+      <!-- skill badge div starts here -->
+      <div class="dark-back" style="background-image: url('https://i.ibb.co/SRMTB41/BGimg-form.png');">
+         <div class="container p-4">
+            <div class="row mt-5">
+               <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                  <div class="card">
+                     <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                           <h5 class="card-title">Level 1 Prep</h5>
+                           <img src="https://i.ibb.co/Sc3wx7S/GC-arcade-skill-badge.png" alt="Card 1 Image" style="width:30%">
+                        </div>
+                        <div class="row py-2">
+                           <div>
+                              <img src="https://i.ibb.co/MhsMvRw/borderline-removebg-preview.png" alt="">
+                           </div>
+                        </div>
+                        <ul class="">
+                           <li><a href="https://www.cloudskillsboost.google/quests/198?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">Manage Data Models in Looker</a></li>
+                           <li><a href="https://www.cloudskillsboost.google/quests/204?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">Predict Soccer Match Outcomes with BigQuery ML</a></li>
+                           <li><a href="https://www.cloudskillsboost.google/quests/209?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">Share Data Using Google Data Cloud</a></li>
+                           <br>
+                           <br>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                  <div class="card">
+                     <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                           <h5 class="card-title">Level 2 Prep</h5>
+                           <img src="https://i.ibb.co/Sc3wx7S/GC-arcade-skill-badge.png" alt="Card 2 Image" style="width:30%">
+                        </div>
+                        <div class="row py-2">
+                           <div>
+                              <img src="https://i.ibb.co/MhsMvRw/borderline-removebg-preview.png" alt="">
+                           </div>
+                        </div>
+                        <ul>
+                           <li><a href="https://www.cloudskillsboost.google/quests/303?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">Create a Secure Data Lake on Cloud Storage</a></li>
+                           <li><a href="https://www.cloudskillsboost.google/quests/305?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">Tag and Discover BigLake Data</a></li>
+                           <li><a href="https://www.cloudskillsboost.google/quests/180?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">Migrate MySQL data to Cloud SQL using Database Migration Service</a></li>
+                           <li><a href="https://www.cloudskillsboost.google/quests/123?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">Insights from Data with BigQuery</a></li>
+                           <li><a href="https://www.cloudskillsboost.google/quests/330?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">Build Custom Processors with Document AI</a></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                  <div class="card">
+                     <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                           <h5 class="card-title">Level 3 Prep</h5>
+                           <img src="https://i.ibb.co/Sc3wx7S/GC-arcade-skill-badge.png" alt="Card 2 Image" style="width:30%">
+                        </div>
+                        <div class="row py-2">
+                           <div>
+                              <img src="https://i.ibb.co/MhsMvRw/borderline-removebg-preview.png" alt="">
+                           </div>
+                        </div>
+                        <ul>
+                           <li><a href="https://www.cloudskillsboost.google/quests/117?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">Perform Foundational Data, ML, and AI Tasks in Google Cloud</a></li>
+                           <li><a href="https://www.cloudskillsboost.google/quests/200?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">Automate Data Capture at Scale with Document AI</a></li>
+                           <br>
+                           <br>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- video div starts here -->
+      <div class="dark-back" style="background-image: url('https://i.ibb.co/YXM4j7h/Finaltry-this.png');background-position:left;background-size: cover;">
+         <div class="container mx-auto p-4 ">
+            <div class="row text-center">
+               <div class="col-lg-4 col-md-6 mb-4">
+                  <div class="card pt-4 bg-transparent background-gradient">
+                     <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/HkJ5gUM2afM"
+                           style="width: 90%;height: 237px;border-radius: 10px;"></iframe>
+                     </div>
+                     <div class="card-body">
+                        <h5>Welcome video and playlist</h5>
+                     </div>
+                  </div>
+                  <a href="https://youtube.com/playlist?list=PLYx9Jx5nax9um2adikt58j5dMqPWD126l"><button class="btn btn-primary btn-block mt-5">Watch</button></a>
+               </div>
+               <div class="col-lg-4 col-md-6 mb-4">
+                  <div class="card pt-4 bg-transparent background-gradient">
+                     <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/tJjaDKS8e1w"
+                           style="width: 90%;height: 237px;border-radius: 10px;"></iframe>
+                     </div>
+                     <div class="card-body">
+                        <h5>Prize video and playlist!</h5>
+                     </div>
+                  </div>
+                  <a href="https://youtube.com/playlist?list=PLYx9Jx5nax9uxX7fOhufFf7gkXyS76tbh"><button class="btn btn-primary btn-block mt-5">Watch</button></a>
+               </div>
+               <div class="col-lg-4 col-md-6 mb-4">
+                  <div class="card pt-4 bg-transparent background-gradient">
+                     <center> <img class="card-img-top" src="https://i.ibb.co/Y2THjnr/community-Image-page.png"
+                        alt="Image" style="width: 90%;border-radius: 10px;"></center>
+                     <div class="card-body">
+                        <h5>Join the Google Cloud Community</h5>
+                     </div>
+                  </div>
+                  <a href="https://www.googlecloudcommunity.com/gc/Learning-Forums/bd-p/cloud-learning-certification?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23"><button class="btn btn-primary btn-block mt-5">Join</button></a>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- video div ends here -->
+      <!-- Points calculator -->
+      <div class="dark-back p-5 pb-5" style="background-color: #19283C;">
+      <div class="container">
+         <div class="card-title text-center mt-5 mb-5">
+            <h3>Points Calculator</h3>
+         </div>
+         <div class="card">
+            <div class="card-body">
+               <form method="post" action="https://script.google.com/macros/s/AKfycbzK2fJzJDViWN1zaHIxMTvyQ8D3JCNt65c95EBhbOZKXG4r_aEa8LKQUPAAjzuepccI_A/exec" id="myForm">
+                  <div class="form-group">
+                     <label for="url">Public Profile URL</label>
+                     <input type="url" class="form-control" id="url" placeholder="Enter public profile URL" name="url">
+                  </div>
+                  <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                  <div id="gameover"></div>
+               </form>
+               <div class="px-3 py-2">
+                  <div id="result">
+                     <div class="spinner-border text-primary" role="status">
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <br>
+         <br>
+      </div>
+            <!-- game over section -->
+            <div class="container-fluid dark-back align-items-center p-3" style="background-color: #19283C;">
+               <center>
+                  <h1 id="card-title">Game over!</h1>
+               </center>
+            </div>
+            <!-- Row 1 -->
+            <div class="dark-back p-6 text-center" style="background-color: #19283C;">
+               <div class="container text-center p-4" >
+                  <div class="row">
+                     <div class="col-lg-3 col-md-6 col-sm-12">
+                        <img src="https://i.ibb.co/dKQ9rL2/Arcade-Game-Coin-L1-07-23.png" alt="Image 1" id="game-over-image" style="width:80%">
+                        <p class="pt-5">Level 1: July 2023</p>
+                        <p>Arcade points: 1</p>
+                     </div>
+                     <div class="col-lg-3 col-md-6 col-sm-12">
+                        <img src="https://i.ibb.co/6ZTsHcg/Arcade-Game-Coin-L2-07-23.png" alt="Image 2" id="game-over-image" style="width:80%">
+                        <p class="pt-5">Level 2: July 2023</p>
+                        <p>Arcade points: 1</p>
+                     </div>
+                     <div class="col-lg-3 col-md-6 col-sm-12">
+                        <img src="https://i.ibb.co/W35F1Q2/Arcade-Trivia-Coin-07-23.png" alt="Image 3" id="game-over-image" style="width:80%">
+                        <p class="pt-5">Trivia July 2023</p>
+                        <p>Arcade points: 1</p>
+                     </div>
+                     <div class="col-lg-3 col-md-6 col-sm-12">
+                        <img src="https://i.ibb.co/HHcMsp9/Arcade-Game-Coin-L1-08-23.png" alt="Image 3" id="game-over-image" style="width:80%">
+                        <p class="pt-5">Level 1: August 2023</p>
+                        <p>Arcade points: 1</p>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-lg-3 col-md-6 col-sm-12">
+                        <img src="https://i.ibb.co/5xNJwzb/Arcade-Game-Coin-L2-08-23.png" alt="Image 1" id="game-over-image" style="width:80%">
+                        <p class="pt-5">Level 2: August 2023</p>
+                        <p>Arcade points: 1</p>
+                     </div>
+                     <div class="col-lg-3 col-md-6 col-sm-12">
+                        <img src="https://i.ibb.co/PTHz3wC/Copy-of-Arcade-Game-Coin-L3-08-23-2.png" alt="Image 2" id="game-over-image" style="width:80%">
+                        <p class="pt-5">Level 3: August 2023</p>
+                        <p>Arcade points: 1</p>
+                     </div>
+                     <div class="col-lg-3 col-md-6 col-sm-12">
+                        <img src="https://i.ibb.co/WVqp27F/Arcade-Trivia-Coin-08-23.png" alt="Image 3" id="game-over-image" style="width:80%">
+                        <p class="pt-5">Trivia August 2023</p>
+                        <p>Arcade points: 1</p>
+                     </div>
+                     <!-- <div class="col-lg-3 col-md-6 col-sm-12">
+                        <img src="https://i.ibb.co/HHcMsp9/Arcade-Game-Coin-L1-08-23.png" alt="Image 3" id="game-over-image" style="width:80%">
+                        <p class="pt-5">Trivia July 2023</p>
+                        <p>Arcade points: 1</p>
+                     </div> -->
+                     <div id="faq"></div>
+                  </div>
+               </div>
+               
+            </div>
+      <!--Section for the FAQs-->
+      <div style="background-color: #19283C;">
+         <section>
+            <h2 id="card-title" class="faq-header">Frequently Asked Questions</h2>
+            <input type="text" id="search" placeholder="search" name="search" class="input-faq">
+            <div class="faqSection">
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">Is the Arcade Facilitator Program different than The Arcade?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">No. The Arcade Facilitator Program is designed to help you to get the most out of the Arcade by offering you a full no-cost access to the Google Cloud Skills Boost Platform for 2 months starting July, 2023. This can help you earn more Arcade Points by completing different skill badges and Trivia challenges. Joining the Arcade Facilitator Program will also help you earn Bonus Arcade Points after reaching different milestones in the Arcade. </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text"> I have been getting the progress report from the Arcade Facilitator Program do I need to subscribe to the Arcade?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text"><b>Yes.</b> It is mandatory for you to subscribe to the Arcade if you wish to redeem your Arcade Points when The Arcade Prize Counter opens.</p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">How many points will I get when I complete a skill badge?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">After you complete 3 skill badges you are eligible to earn 1 Arcade point. For every 6 skills badges you will get 2 Arcade points and so on...</p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">I have earned only 2 skill badges. How many points will I get?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">Unfortunately, earning 2 skill badges will not be enough to claim an Arcade point. You will need to complete at least 3 Skill Badges to earn one point.</p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">I have already completed the Skill Badges through preps mentioned on the Arcade page. Where can I find and complete more skill badges which will help me earn more Arcade Points?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">If you have completed the skill badges on the page, you can go to the <a href="https://www.cloudskillsboost.google/catalog?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23" style="color:#1e8e3e">catalog</a> and finish other skill badges that you have not yet completed. The Arcade points can be accumulated using any skill badge present within the <a href="https://www.cloudskillsboost.google/catalog?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23" style="color:#1e8e3e">catalog</a>.</p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">Where do I get credits to complete the skill badges?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">Users who have subscribed to Arcade receive Arcade Insider mails twice every month which contain unique codes that can be redeemed to get no cost GCSB credits which can be used to complete Trivia & Skill badge quests.</p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">Why can't I take all the labs from Trivia quest in one go?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">Every trivia quest lasts 4 weeks. You'll get hands-on experience of various technologies through self-paced labs and afterwards you can test your knowledge with a set of questions from the quiz lab but each quiz will be active for a week in successive manner.</p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">Will I receive any swags or physical certificates for the games?
+                     </h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">Users will get a special badge for each game they complete in this
+                        event and for each badge earned user will also receive 1 Arcade point which in turn will
+                        be used to redeem goodies when the prize counter opens. Please note there won’t be any physical
+                        certificates or goodies just for completing the game.
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">Are there prizes? What are the prizes?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">Yes! The more badges you earn, the more arcade points you accumulate.
+                        Redeem points for prizes at the prize counter. The prize counter will be open at
+                        specific times throughout the year.
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">Do I get a prize as soon as I earn a badge?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">No. You will not be able to claim a prize immediately. You'll be able
+                        to claim prizes when the prize counter opens.
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">When does the prize counter open?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">Great question. The prize counter dates would be announced soon. Stay
+                        tuned for exact dates.
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">What do I have to do to get a prize?
+                     </h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">Activate the Arcade for your account. Then join games, complete labs,
+                        learn skills, and earn badges! Each challenge consists of multiple labs. Complete all
+                        the labs successfully to earn the badge. Each badge gets you one point. Periodically,
+                        the prize counter will open and you'll be able to use points to claim swag.
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">How will I know when the prize counter opens?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">There are many ways to stay up to date. Add us to your calendar. Keep
+                        an eye on your email. And, follow @Qwiklabs on your choice of social network.
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">What if I miss the prize counter opening?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">Unused points expire every 6 months. No exceptions. Please help us
+                        keep you informed via the options listed above.
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">How do arcade points work?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text"> One point per eligible game/trivia badge. All eligible game/trivia badges are listed on this
+                        page. If it's not listed here, it's not eligible. Points expire after 6 months. You'll
+                        have at least one opportunity to redeem points, so please use it, don't lose it!
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">How do I know how many arcade points I have?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text"> Compare the list of eligible arcade games to <a
+                        style="color:#1e8e3e" href="https://support.google.com/qwiklabs/answer/9222527">your
+                        Google Cloud Skills Boost profile </a> to calculate points.
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">How can I get more arcade points?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text"> Play more games! The more you learn, the more you earn.</p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">What are the upcoming arcade games?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text"> Keep an eye on this page for current and upcoming games.</p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">I don't want a prize. Can I still play?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">Yes! When the prize counter opens, participation is totally optional.
+                        You might want to check out the charitable options, even if you are not interested in
+                        physical prizes!
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">What is the cost? Do I need quarters?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">There is no cost to participate in Arcade games. No quarters needed!
+                        (Or any other currency!)
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">Can I participate if I'm already in another Google program? (Ex:
+                        Innovators, education programs, Learn to Earn, OnAir, Study Jams, DevFest)
+                     </h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">Yes! Please keep in mind that different programs have varying
+                        requirements so check with other programs as well.
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">Can I participate if I'm located in [your country of residence,
+                        whatever that may be]?
+                     </h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">Yes, you may participate within the Google Cloud Skills Boost Terms
+                        of Service!
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">What about sending prizes to [your country of residence, whatever
+                        that may be]?
+                     </h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">We make every effort to reach you wherever you are, whenever
+                        possible. Items cannot be shipped to countries on the list of<a style="color:#1e8e3e"
+                           href="https://home.treasury.gov/policy-issues/financial-sanctions/sanctions-programs-and-country-information">
+                        US Treasury Department’s Sanctions Programs </a> and the following countries:
+                        Pakistan, Bangladesh, Iraq, Iran, North Korea, Crimea, Cuba, Sevastopol city and Syria.
+                        Each challenge includes details about prizes and shipping availability, as this list may
+                        change at any time (locations may be added or removed based on unforeseen events). If
+                        you’re in one of these countries, you are welcome to participate within the Terms of
+                        Service. You may decline a prize, select an address in a country where shipping is
+                        available, or consider charitable options instead.
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">What if a lab isn't working?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text"> Great question. The community is a great place to get questions
+                        answered. Or, you can request assistance from our support team directly within the
+                        Skills Boost platform.
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">What if there are no more seats in a game?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">That happens sometimes! Seats are available on a first come, first
+                        serve basis. Sometimes additional seats open up, so keep an eye out for more
+                        opportunities to join if you miss the first round.
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">I've never used Skills Boost before. Help!</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">Welcome, I'm so glad you're here. <a style="color:#1e8e3e"
+                        href="https://www.cloudskillsboost.google/catalog_lab/1281?utm_source=qwiklabs&utm_medium=lp&utm_campaign=a23">This
+                        tour of Google Cloud and the Skills Boost platform</a> will help you get oriented.
+                        It's available at no cost.
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">Can I share or gift my Arcade points with someone else?</h3>
+                  </div>
+                  <div class=" answer answerO">
+                     <p class="answer-text">No. Because points are based on your learning record, they stick with
+                        you. But if you're interested in giving, please do check out charitable options when the
+                        prize counter opens.
+                     </p>
+                  </div>
+                  <div class=" answer answerTrasl">
+                     <p class="answer-text">XYCVVHGGHBJNHJB HJGHVGHBJGHJB VBVCFGHBN GFC
+                     </p>
+                  </div>
+               </div>
+            </div>
+            <div class="imageEmpty">
+               <img src="https://i.ibb.co/RBcL936/Emptyimage.png" alt="Emptyimage">
+            </div>
+         </section>
+      </div>
+      <!-- Footer -->
+      <div class="container-fluid pt-4" style="background-color: #19283C;">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="content text-center">
+                  <h3 class="card-title" style="font-size: 20px;"> Follow us on social media! </h3>
+               </div>
+            </div>
+         </div>
+         <div class="row mt-3" style="height: 100px;">
+            <div class="col-md-12">
+               <footer class="footer text-center">
+                  <div>
+                     <ul>
+                        <li class="footer-li">
+                           <a style="text-decoration:none" href="https://www.instagram.com/qwiklabs/?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">Instagram |</a> 
+                        </li>
+                        <li class="footer-li">
+                           <a style="text-decoration:none" href="https://www.facebook.com/qwiklabs?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">Facebook |</a> 
+                        </li>
+                        <li class="footer-li">
+                           <a style="text-decoration:none" href="https://twitter.com/qwiklabs?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">Twitter |</a> 
+                        </li>
+                        <li class="footer-li">
+                           <a style="text-decoration:none" href="https://www.linkedin.com/company/qwiklabs-inc-/?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">LinkedIn |</a> 
+                        </li>
+                        <li class="footer-li">
+                           <a style="text-decoration:none" href="https://www.youtube.com/channel/UCgadTofKslPYREQE8TjY7AA/featured?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">YouTube</a> 
+                        </li>
+                     </ul>
+                  </div>
+               </footer>
+            </div>
+         </div>
+      </div>
+   </div>
+      <!--Second language Section-->
+     </div>
+   <div class="spanishParentContainer">
+      <button onclick="scrollToTop('top')" id="scrollBtn">Back to Top</button> 
+     
+      <div class="topnav" id="myTopnav">
+         <ul>
+            <li onclick="scrollToTop('playnow')" class="active">Play Now</li>
+            <!-- <li onclick="scrollToTop('prize')">Prize Counter</li>
+               <li onclick="scrollToTop('pointsCalculator')">Points Calculator</li>
+               <li onclick="scrollToTop('gameover')">Game Over</li> -->
+            <li onclick="scrollToTop('faq')">FAQs</li>
+            <li class="icon" onclick="myFunction()">
+               <i class="fa fa-bars" style="color: white;"></i>
+            </li>
+            <li><a href="https://www.cloudskillsboost.google/games/4422?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23-September-level3" style="color: white; text-decoration: none;">Explore GenAI</a></li>
+         </ul>
+      </div>
+      <div class="bannerFix">
+         <img src="https://i.ibb.co/1sWy3Kz/Arcade-Web-Header2023.png"
+            alt="GC-arcade-header-desktop-Edited" style="width: 100%;" class="responsive" id="Header1">
+         <img src="https://i.ibb.co/HFQnW3m/Mobileheader-Arcade2023.png"
+            alt="GC-arcade-header-mobile-Edited" style="width: 100%;" class="responsive" id="Header2">
+      </div>
+      <!-- mailchimp form -->
+      <div class="dark-back p-1" style="background-image: url('https://i.ibb.co/SRMTB41/BGimg-form.png');">
+         <div class="container">
+            <div id="mc_embed_signup">
+               <form
+                  action="https://qwiklabs.us19.list-manage.com/subscribe/post?u=dd8bfe9d5ef98dcbabc9743ad&amp;id=7b8592ee03&amp;f_id=00dfc9e0f0"
+                  method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate"
+                  target="_blank" novalidate>
+                  <div id="mc_embed_signup_scroll">
+                     <div class="row justify-content-center">
+                        <div class="col-md-5">
+                           <h1 style="color:#de5246">This is Spanish Language</h1>
+                           <button class="buttonT">  Translate</button>
+                           <h5>REQUIRED for prizes: Subscribe to activate the Arcade for your account:</h5>
+                        </div>
+                        <div class="col-md-4">
+                           <!-- Input field -->
+                           <div id="mc-field-group">
+                              <label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label>
+                              <input type="email" value="" name="EMAIL" class="form-control required-email"
+                                 id="mce-EMAIL" required>
+                              <span id="mce-EMAIL-HELPERTEXT" class="helper_text" style="display:none"></span>
+                           </div>
+                           <!-- Hidden name tags -->
+                           <div hidden="true">
+                              <input type="hidden" name="tags" value="1381188">
+                           </div>
+                           <!-- error/success messages -->
+                           <div id="mce-responses" class="clear">
+                              <div class="response" id="mce-error-response" style="display:none"></div>
+                              <div class="response" id="mce-success-response" style="display:none"></div>
+                           </div>
+                           <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                           <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                              <input type="text" name="b_dd8bfe9d5ef98dcbabc9743ad_7b8592ee03" tabindex="-1"
+                                 value="">
+                           </div>
+                        </div>
+                        <div class="col-md-2">
+                           <button type="submit" name="subscribe" id="mc-embedded-subscribe"
+                              class="btn btn-success" style="margin-top: 35px;">Subscribe</button>
+                        </div>
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+      <!-- mailchimp form ends -->
+
+      <!-- Arcade Level 3 div starts here -->
+      <div class="dark-back pt-4 py-3" style="background-image: url('https://i.ibb.co/SRMTB41/BGimg-form.png');">
+         <div class="container">
+            <div class="card">
+               <div class="row no-gutters">
+                  <div class="col-lg-6 align-items-center">
+                     <div class="card-body">
+                        <img src="https://i.ibb.co/p4gkmnk/Level3-Sept.png" alt="dhjbnfkm-xkja" class="card-img-top">
+                     </div>
+                  </div>
+                  <div class="col-lg-6 p-5">
+              
+                     <br>
+                     <h3 class="card-title">Level up your GenAI skills</h3>
+                     <p class="pt-2">Gain hands-on experience with Google Cloud's GenAI tools and techniques - and earn your first Google Cloud GenAI game badge!</p>
+                     <p class="pt-2"><span style="color:#f94db4;">Access code:</span> 1q-genai-672</p>
+                     <p>Arcade points: 1</p>
+                     <a href="https://www.cloudskillsboost.google/games/4422?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23-September-level3"><button class="btn mt-1">START!</button></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <br>
+         <br>
+         <br>
+      </div>
+            <!-- Arcade Trivia div starts here -->
+            <!-- <div class="dark-back pt-4 py-3" style="background-image: url('https://i.ibb.co/SRMTB41/BGimg-form.png');">
+               <div class="container">
+                  <div class="card">
+                     <div class="row no-gutters">
+                        <div class="col-lg-6 p-5 my-2">
+                           <br>
+                           <h3 class="card-title">Trivia - with a sprinkle of Gen AI!</h3>
+                           <p class="pt-2">Answer Trivia August week 5 questions and put your Gen AI knowledge to test- The best way to check your progress!</p>
+                           <p>Arcade points: 1</p>
+                           <a href="https://www.cloudskillsboost.google/quests/333?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23-august-trivia"><button class="btn mt-1">START!</button></a>
+                        </div>
+                        <div class="col-lg-6 align-items-center">
+                           <div class="card-body">
+                              <img src="https://i.ibb.co/QPyZ1W9/LP-Trivia.jpg" alt="dhjbnfkm-xkja" class="card-img-top">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <br>
+               <br>
+               <br>
+            </div> -->
+<!-- arcade games -->
+<div class="dark-back " style="background-image: url('https://i.ibb.co/SRMTB41/BGimg-form.png');">
+   <div class="container">
+      <center>
+         <div class="row pt-5 align-items-center">
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-2">
+               <h5 class="card-title">LEVEL 1</h5>
+               <p class="card-text" style="font-size: 14px;">Play to learn and earn a Google Cloud badge!</p>
+               <div class="card">
+                  <div class="card-body">
+                     <img src="https://i.ibb.co/8zVr0tN/Arcade-Level1-Sept.png" class="card-img-top"
+                        alt="Card Image 1">
+                  </div>
+               </div>
+               <p class="pt-2"><span style="color:#f94db4;"></span></p>
+               <p class="pt-2"><span style="color:#f94db4;">Access code:</span> 1q-sports-900</p>
+               <p>Arcade points: 1</p>
+               <a href="https://www.cloudskillsboost.google/games/4423?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23-September-level3"><button class="btn mt-1">START!</button></a>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-2">
+               <h5 class="card-title">LEVEL 2</h5>
+               <p class="card-text" style="font-size: 14px;">Play to learn and earn a Google Cloud badge!</p>
+               <div class="card">
+                  <div class="card-body">
+                     <img src="https://i.ibb.co/k1B7XyC/Arcade-Sept-Level2.png" class="card-img-top"
+                        alt="Card Image 1">
+                  </div>
+               </div>
+               <p class="pt-2"><span style="color:#f94db4;"></span></p>
+               <p class="pt-2"><span style="color:#f94db4;">Access code:</span> 1q-datalake-344</p>
+               <p>Arcade points: 1</p>
+               <a href="https://www.cloudskillsboost.google/games/4424?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23-September-level3"><button class="btn mt-1">START!</button></a>
+            </div>
+            <!-- <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
+               <h5 class="card-title">LEVEL 3</h5>
+               <p class="card-text" style="font-size: 14px;">Earn a Google Cloud badge in GenAI!</p>
+               <div class="card">
+                  <div class="card-body">
+                     <img src="https://i.ibb.co/rxTx1H2/LP-Level-3.png" class="card-img-top"
+                        alt="Card Image 1">
+                  </div>
+               </div>
+               <p class="pt-2"><span style="color:#f94db4;"></span></p>
+               <p class="pt-2"><span style="color:#f94db4;">Access code:</span> 1q-genai-384</p>
+               <p>Arcade points: 1</p>
+               <a href="https://www.cloudskillsboost.google/games/4303?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23-august-level3"><button class="btn mt-1">START!</button></a>
+            </div> -->
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-2">
+               <h5 class="card-title">TRIVIA</h5>
+               <p class="card-text" style="font-size: 14px;">Brain teaser to test your knowledge and skills!</p>
+               <div class="card">
+                  <div class="card-body">
+                     <img src="https://i.ibb.co/FDHVsSd/September-Trivia-Image.png" class="card-img-top"
+                        alt="Card Image 1">
+                  </div>
+               </div>
+               <p class="pt-2"><span style="color:#f94db4;"></span></p>
+               <p class="pt-2"><span style="color:#f94db4;"></span></p>
+               <br>
+               <p>Arcade points: 1</p>
+               <a href="https://www.cloudskillsboost.google/quests/336?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23-September-trivia"><button class="btn mt-1">START!</button></a>
+            </div>
+         </div>
+      </center>
+   </div>
+   <br><br>
+</div>
+
+      <!-- test div -->
+      <div class="dark-back " style="background-image: url('https://i.ibb.co/SRMTB41/BGimg-form.png');">
+         <div class="container">
+            <div class="row pt-2 pb-2 instRow bg-transparent background-gradient" style="display:flex">
+               <div class="col col-lg-6 col-md-6 col-sm-12 col-12 mb-2 " style="display:flex" >
+                  <div class="instCard1Container card" style="display:flex">
+                     <div class="card-body  d-flex align-items-start" style="flex-direction: column">
+                        <h5 class="card-title">HOW IT WORKS</h5>
+                        <div class=" py-2">
+                           <div>
+                              <img src="https://i.ibb.co/MhsMvRw/borderline-removebg-preview.png" alt="">
+                              <table>
+                                 <tr>
+                                    <td class="list-marker" colspan="2">01</td>
+                                    <td class="list-item">Subscribe to active Arcade emails for your account including prizes and codes</td>
+                                 </tr>
+                                 <tr>
+                                    <td class="list-marker" colspan="2">02</td>
+                                    <td class="list-item">Join Google Cloud Skills Boost. You don't need a new account if you’re already registered.</td>
+                                 </tr>
+                                 <tr>
+                                    <td class="list-marker" colspan="2">03</td>
+                                    <td class="list-item">Play games to learn skills, earn badges and get arcade points. We suggest starting at level 1 if you're new to cloud!</td>
+                                 </tr>
+                                 <tr>
+                                    <td class="list-marker" colspan="2">04</td>
+                                    <td class="list-item">Enroll in Skill Badges to help you complete game tasks and get more Arcade points.</td>
+                                 </tr>
+                                 <tr>
+                                    <td class="list-marker" colspan="2">05</td>
+                                    <td class="list-item first-card">REDEEM points at the prize counter. <a href="https://youtube.com/playlist?list=PLYx9Jx5nax9uxX7fOhufFf7gkXyS76tbh">View previous prizes</a></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col col-lg-6 col-md-6 col-sm-12 col-12 mb-2" style="display:flex" >
+                  <div class="instCard2Container card" style="display:flex; ">
+                     <div class="card-body text-left d-flex align-items-start" style="flex-direction: column">
+                        <h5 class="card-title">POINTS SYSTEM</h5>
+                        <div class=" py-2">
+                           <div>
+                              <img src="https://i.ibb.co/MhsMvRw/borderline-removebg-preview.png" alt="">
+                           </div>
+                        </div>
+                        <table>
+                           <tr>
+                              <td class="point-marker">LEVEL 1</td>
+                              <td class="img-list-item"><img src="https://i.ibb.co/dpRNn04/Coin-Image-removebg-preview.png" alt="" style="width: 60px;"></td>
+                              <td style="padding-left: 10px;"> x1 game badge = 1 point</td>
+                           </tr>
+                           <tr>
+                              <td class="point-marker">LEVEL 2</td>
+                              <td class="img-list-item"><img src="https://i.ibb.co/dpRNn04/Coin-Image-removebg-preview.png" alt="" style="width: 60px;"></td>
+                              <td style="padding-left: 10px;"> x1 game badge = 1 point</td>
+                           </tr>
+                           <tr>
+                              <td class="point-marker">LEVEL 3</td>
+                              <td class="img-list-item"><img src="https://i.ibb.co/dpRNn04/Coin-Image-removebg-preview.png" alt="" style="width: 60px;"></td>
+                              <td style="padding-left: 10px;"> x1 game badge = 1 point</td>
+                           </tr>
+                           <tr>
+                              <td class="point-marker">TRIVIA</td>
+                              <td class="img-list-item"><img src="https://i.ibb.co/hMHPYzV/triviaicon-removebg-preview.png" alt="" style="width: 60px;"></td>
+                              <td style="padding-left: 10px;"> x1 game badge = 1 point</td>
+                           </tr>
+                           <tr>
+                              <td class="point-marker">SKILL BADGE</td>
+                              <td class="img-list-item"><img src="https://i.ibb.co/Sc3wx7S/GC-arcade-skill-badge.png" alt="" style="width: 60px;"></td>
+                              <td style="padding-left: 10px;"> x3 badges = 1 point</td>
+                           </tr>
+                        </table>
+                        <div class="py-4">
+                           <div class="instCard2S2ParentContainer ">
+                              <div>
+                                 <img src="https://i.ibb.co/MhsMvRw/borderline-removebg-preview.png" alt="">
+                              </div>
+                              <p class="point-marker card-title" style="margin-bottom: 13px;">EXAMPLE</p>
+                           </div>
+                           <div class="instCard2S2Container">
+                              <div class="instCard2S2Pts row">
+                                 <div class="col-lg-8 col-md-6 col-sm-12 col-12" >
+                                    <img src="https://i.ibb.co/Sc3wx7S/GC-arcade-skill-badge.png" alt="" style="width:70px;height: min-content;padding-right: 3px;">
+                                    <img src="https://i.ibb.co/Sc3wx7S/GC-arcade-skill-badge.png" alt="" style="width:70px;height: min-content;padding-right: 3px;">
+                                    <img src="https://i.ibb.co/Sc3wx7S/GC-arcade-skill-badge.png" alt="" style="width:70px;height: min-content;padding-right: 3px;">
+                                    <img src="https://i.ibb.co/hMHPYzV/triviaicon-removebg-preview.png" alt="" style="width:70px;height: min-content;padding-right: 3px;">
+                                    <img src="https://i.ibb.co/dpRNn04/Coin-Image-removebg-preview.png" alt="" style="width:70px;height: min-content">
+                                 </div>
+                                 <div style="font-size: 19px;padding-top: 10px;text-align: left; padding-right: 0px" class="points- list-marker exPts col-lg-4 col-md-6 col-sm-12 col-12"> = 3 points</div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="playnow"></div>
+         </div>
+      </div>
+      <!-- test div ends -->
+
+      <!-- skill badge div starts here -->
+      <div class="dark-back" style="background-image: url('https://i.ibb.co/SRMTB41/BGimg-form.png');">
+         <div class="container p-4">
+            <div class="row mt-5">
+               <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                  <div class="card">
+                     <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                           <h5 class="card-title">Level 1 Prep</h5>
+                           <img src="https://i.ibb.co/Sc3wx7S/GC-arcade-skill-badge.png" alt="Card 1 Image" style="width:30%">
+                        </div>
+                        <div class="row py-2">
+                           <div>
+                              <img src="https://i.ibb.co/MhsMvRw/borderline-removebg-preview.png" alt="">
+                           </div>
+                        </div>
+                        <ul class="">
+                           <li><a href="https://www.cloudskillsboost.google/quests/198?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">Manage Data Models in Looker</a></li>
+                           <li><a href="https://www.cloudskillsboost.google/quests/204?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">Predict Soccer Match Outcomes with BigQuery ML</a></li>
+                           <li><a href="https://www.cloudskillsboost.google/quests/209?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">Share Data Using Google Data Cloud</a></li>
+                           <br>
+                           <br>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                  <div class="card">
+                     <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                           <h5 class="card-title">Level 2 Prep</h5>
+                           <img src="https://i.ibb.co/Sc3wx7S/GC-arcade-skill-badge.png" alt="Card 2 Image" style="width:30%">
+                        </div>
+                        <div class="row py-2">
+                           <div>
+                              <img src="https://i.ibb.co/MhsMvRw/borderline-removebg-preview.png" alt="">
+                           </div>
+                        </div>
+                        <ul>
+                           <li><a href="https://www.cloudskillsboost.google/quests/303?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">Create a Secure Data Lake on Cloud Storage</a></li>
+                           <li><a href="https://www.cloudskillsboost.google/quests/305?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">Tag and Discover BigLake Data</a></li>
+                           <li><a href="https://www.cloudskillsboost.google/quests/180?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">Migrate MySQL data to Cloud SQL using Database Migration Service</a></li>
+                           <li><a href="https://www.cloudskillsboost.google/quests/123?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">Insights from Data with BigQuery</a></li>
+                           <li><a href="https://www.cloudskillsboost.google/quests/330?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">Build Custom Processors with Document AI</a></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                  <div class="card">
+                     <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                           <h5 class="card-title">Level 3 Prep</h5>
+                           <img src="https://i.ibb.co/Sc3wx7S/GC-arcade-skill-badge.png" alt="Card 2 Image" style="width:30%">
+                        </div>
+                        <div class="row py-2">
+                           <div>
+                              <img src="https://i.ibb.co/MhsMvRw/borderline-removebg-preview.png" alt="">
+                           </div>
+                        </div>
+                        <ul>
+                           <li><a href="https://www.cloudskillsboost.google/quests/117?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">Perform Foundational Data, ML, and AI Tasks in Google Cloud</a></li>
+                           <li><a href="https://www.cloudskillsboost.google/quests/200?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">Automate Data Capture at Scale with Document AI</a></li>
+                           <br>
+                           <br>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- video div starts here -->
+      <div class="dark-back" style="background-image: url('https://i.ibb.co/YXM4j7h/Finaltry-this.png');background-position:left;background-size: cover;">
+         <div class="container mx-auto p-4 ">
+            <div class="row text-center">
+               <div class="col-lg-4 col-md-6 mb-4">
+                  <div class="card pt-4 bg-transparent background-gradient">
+                     <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/HkJ5gUM2afM"
+                           style="width: 90%;height: 237px;border-radius: 10px;"></iframe>
+                     </div>
+                     <div class="card-body">
+                        <h5>Welcome video and playlist</h5>
+                     </div>
+                  </div>
+                  <a href="https://youtube.com/playlist?list=PLYx9Jx5nax9um2adikt58j5dMqPWD126l"><button class="btn btn-primary btn-block mt-5">Watch</button></a>
+               </div>
+               <div class="col-lg-4 col-md-6 mb-4">
+                  <div class="card pt-4 bg-transparent background-gradient">
+                     <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/tJjaDKS8e1w"
+                           style="width: 90%;height: 237px;border-radius: 10px;"></iframe>
+                     </div>
+                     <div class="card-body">
+                        <h5>Prize video and playlist!</h5>
+                     </div>
+                  </div>
+                  <a href="https://youtube.com/playlist?list=PLYx9Jx5nax9uxX7fOhufFf7gkXyS76tbh"><button class="btn btn-primary btn-block mt-5">Watch</button></a>
+               </div>
+               <div class="col-lg-4 col-md-6 mb-4">
+                  <div class="card pt-4 bg-transparent background-gradient">
+                     <center> <img class="card-img-top" src="https://i.ibb.co/Y2THjnr/community-Image-page.png"
+                        alt="Image" style="width: 90%;border-radius: 10px;"></center>
+                     <div class="card-body">
+                        <h5>Join the Google Cloud Community</h5>
+                     </div>
+                  </div>
+                  <a href="https://www.googlecloudcommunity.com/gc/Learning-Forums/bd-p/cloud-learning-certification?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23"><button class="btn btn-primary btn-block mt-5">Join</button></a>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- video div ends here -->
+      <!-- Points calculator -->
+      <div class="dark-back p-5 pb-5" style="background-color: #19283C;">
+      <div class="container">
+         <div class="card-title text-center mt-5 mb-5">
+            <h3>Points Calculator</h3>
+         </div>
+         <div class="card">
+            <div class="card-body">
+               <form method="post" action="https://script.google.com/macros/s/AKfycbzK2fJzJDViWN1zaHIxMTvyQ8D3JCNt65c95EBhbOZKXG4r_aEa8LKQUPAAjzuepccI_A/exec" id="myForm">
+                  <div class="form-group">
+                     <label for="url">Public Profile URL</label>
+                     <input type="url" class="form-control" id="url" placeholder="Enter public profile URL" name="url">
+                  </div>
+                  <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                  <div id="gameover"></div>
+               </form>
+               <div class="px-3 py-2">
+                  <div id="result">
+                     <div class="spinner-border text-primary" role="status">
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <br>
+         <br>
+      </div>
+            <!-- game over section -->
+            <div class="container-fluid dark-back align-items-center p-3" style="background-color: #19283C;">
+               <center>
+                  <h1 id="card-title">Game over!</h1>
+               </center>
+            </div>
+            <!-- Row 1 -->
+            <div class="dark-back p-6 text-center" style="background-color: #19283C;">
+               <div class="container text-center p-4" >
+                  <div class="row">
+                     <div class="col-lg-3 col-md-6 col-sm-12">
+                        <img src="https://i.ibb.co/dKQ9rL2/Arcade-Game-Coin-L1-07-23.png" alt="Image 1" id="game-over-image" style="width:80%">
+                        <p class="pt-5">Level 1: July 2023</p>
+                        <p>Arcade points: 1</p>
+                     </div>
+                     <div class="col-lg-3 col-md-6 col-sm-12">
+                        <img src="https://i.ibb.co/6ZTsHcg/Arcade-Game-Coin-L2-07-23.png" alt="Image 2" id="game-over-image" style="width:80%">
+                        <p class="pt-5">Level 2: July 2023</p>
+                        <p>Arcade points: 1</p>
+                     </div>
+                     <div class="col-lg-3 col-md-6 col-sm-12">
+                        <img src="https://i.ibb.co/W35F1Q2/Arcade-Trivia-Coin-07-23.png" alt="Image 3" id="game-over-image" style="width:80%">
+                        <p class="pt-5">Trivia July 2023</p>
+                        <p>Arcade points: 1</p>
+                     </div>
+                     <div class="col-lg-3 col-md-6 col-sm-12">
+                        <img src="https://i.ibb.co/HHcMsp9/Arcade-Game-Coin-L1-08-23.png" alt="Image 3" id="game-over-image" style="width:80%">
+                        <p class="pt-5">Level 1: August 2023</p>
+                        <p>Arcade points: 1</p>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-lg-3 col-md-6 col-sm-12">
+                        <img src="https://i.ibb.co/5xNJwzb/Arcade-Game-Coin-L2-08-23.png" alt="Image 1" id="game-over-image" style="width:80%">
+                        <p class="pt-5">Level 2: August 2023</p>
+                        <p>Arcade points: 1</p>
+                     </div>
+                     <div class="col-lg-3 col-md-6 col-sm-12">
+                        <img src="https://i.ibb.co/PTHz3wC/Copy-of-Arcade-Game-Coin-L3-08-23-2.png" alt="Image 2" id="game-over-image" style="width:80%">
+                        <p class="pt-5">Level 3: August 2023</p>
+                        <p>Arcade points: 1</p>
+                     </div>
+                     <div class="col-lg-3 col-md-6 col-sm-12">
+                        <img src="https://i.ibb.co/WVqp27F/Arcade-Trivia-Coin-08-23.png" alt="Image 3" id="game-over-image" style="width:80%">
+                        <p class="pt-5">Trivia August 2023</p>
+                        <p>Arcade points: 1</p>
+                     </div>
+                     <!-- <div class="col-lg-3 col-md-6 col-sm-12">
+                        <img src="https://i.ibb.co/HHcMsp9/Arcade-Game-Coin-L1-08-23.png" alt="Image 3" id="game-over-image" style="width:80%">
+                        <p class="pt-5">Trivia July 2023</p>
+                        <p>Arcade points: 1</p>
+                     </div> -->
+                     <div id="faq"></div>
+                  </div>
+               </div>
+               
+            </div>
+      <!--Section for the FAQs-->
+      <div style="background-color: #19283C;">
+         <section>
+            <h2 id="card-title" class="faq-header">Frequently Asked Questions</h2>
+            <input type="text" id="search" placeholder="search" name="search" class="input-faq">
+            <div class="faqSection">
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">Is the Arcade Facilitator Program different than The Arcade?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">No. The Arcade Facilitator Program is designed to help you to get the most out of the Arcade by offering you a full no-cost access to the Google Cloud Skills Boost Platform for 2 months starting July, 2023. This can help you earn more Arcade Points by completing different skill badges and Trivia challenges. Joining the Arcade Facilitator Program will also help you earn Bonus Arcade Points after reaching different milestones in the Arcade. </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text"> I have been getting the progress report from the Arcade Facilitator Program do I need to subscribe to the Arcade?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text"><b>Yes.</b> It is mandatory for you to subscribe to the Arcade if you wish to redeem your Arcade Points when The Arcade Prize Counter opens.</p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">How many points will I get when I complete a skill badge?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">After you complete 3 skill badges you are eligible to earn 1 Arcade point. For every 6 skills badges you will get 2 Arcade points and so on...</p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">I have earned only 2 skill badges. How many points will I get?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">Unfortunately, earning 2 skill badges will not be enough to claim an Arcade point. You will need to complete at least 3 Skill Badges to earn one point.</p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">I have already completed the Skill Badges through preps mentioned on the Arcade page. Where can I find and complete more skill badges which will help me earn more Arcade Points?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">If you have completed the skill badges on the page, you can go to the <a href="https://www.cloudskillsboost.google/catalog?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23" style="color:#1e8e3e">catalog</a> and finish other skill badges that you have not yet completed. The Arcade points can be accumulated using any skill badge present within the <a href="https://www.cloudskillsboost.google/catalog?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23" style="color:#1e8e3e">catalog</a>.</p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">Where do I get credits to complete the skill badges?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">Users who have subscribed to Arcade receive Arcade Insider mails twice every month which contain unique codes that can be redeemed to get no cost GCSB credits which can be used to complete Trivia & Skill badge quests.</p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">Why can't I take all the labs from Trivia quest in one go?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">Every trivia quest lasts 4 weeks. You'll get hands-on experience of various technologies through self-paced labs and afterwards you can test your knowledge with a set of questions from the quiz lab but each quiz will be active for a week in successive manner.</p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">Will I receive any swags or physical certificates for the games?
+                     </h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">Users will get a special badge for each game they complete in this
+                        event and for each badge earned user will also receive 1 Arcade point which in turn will
+                        be used to redeem goodies when the prize counter opens. Please note there won’t be any physical
+                        certificates or goodies just for completing the game.
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">Are there prizes? What are the prizes?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">Yes! The more badges you earn, the more arcade points you accumulate.
+                        Redeem points for prizes at the prize counter. The prize counter will be open at
+                        specific times throughout the year.
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">Do I get a prize as soon as I earn a badge?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">No. You will not be able to claim a prize immediately. You'll be able
+                        to claim prizes when the prize counter opens.
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">When does the prize counter open?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">Great question. The prize counter dates would be announced soon. Stay
+                        tuned for exact dates.
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">What do I have to do to get a prize?
+                     </h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">Activate the Arcade for your account. Then join games, complete labs,
+                        learn skills, and earn badges! Each challenge consists of multiple labs. Complete all
+                        the labs successfully to earn the badge. Each badge gets you one point. Periodically,
+                        the prize counter will open and you'll be able to use points to claim swag.
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">How will I know when the prize counter opens?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">There are many ways to stay up to date. Add us to your calendar. Keep
+                        an eye on your email. And, follow @Qwiklabs on your choice of social network.
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">What if I miss the prize counter opening?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">Unused points expire every 6 months. No exceptions. Please help us
+                        keep you informed via the options listed above.
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">How do arcade points work?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text"> One point per eligible game/trivia badge. All eligible game/trivia badges are listed on this
+                        page. If it's not listed here, it's not eligible. Points expire after 6 months. You'll
+                        have at least one opportunity to redeem points, so please use it, don't lose it!
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">How do I know how many arcade points I have?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text"> Compare the list of eligible arcade games to <a
+                        style="color:#1e8e3e" href="https://support.google.com/qwiklabs/answer/9222527">your
+                        Google Cloud Skills Boost profile </a> to calculate points.
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">How can I get more arcade points?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text"> Play more games! The more you learn, the more you earn.</p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">What are the upcoming arcade games?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text"> Keep an eye on this page for current and upcoming games.</p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">I don't want a prize. Can I still play?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">Yes! When the prize counter opens, participation is totally optional.
+                        You might want to check out the charitable options, even if you are not interested in
+                        physical prizes!
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">What is the cost? Do I need quarters?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">There is no cost to participate in Arcade games. No quarters needed!
+                        (Or any other currency!)
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">Can I participate if I'm already in another Google program? (Ex:
+                        Innovators, education programs, Learn to Earn, OnAir, Study Jams, DevFest)
+                     </h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">Yes! Please keep in mind that different programs have varying
+                        requirements so check with other programs as well.
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">Can I participate if I'm located in [your country of residence,
+                        whatever that may be]?
+                     </h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">Yes, you may participate within the Google Cloud Skills Boost Terms
+                        of Service!
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">What about sending prizes to [your country of residence, whatever
+                        that may be]?
+                     </h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">We make every effort to reach you wherever you are, whenever
+                        possible. Items cannot be shipped to countries on the list of<a style="color:#1e8e3e"
+                           href="https://home.treasury.gov/policy-issues/financial-sanctions/sanctions-programs-and-country-information">
+                        US Treasury Department’s Sanctions Programs </a> and the following countries:
+                        Pakistan, Bangladesh, Iraq, Iran, North Korea, Crimea, Cuba, Sevastopol city and Syria.
+                        Each challenge includes details about prizes and shipping availability, as this list may
+                        change at any time (locations may be added or removed based on unforeseen events). If
+                        you’re in one of these countries, you are welcome to participate within the Terms of
+                        Service. You may decline a prize, select an address in a country where shipping is
+                        available, or consider charitable options instead.
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">What if a lab isn't working?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text"> Great question. The community is a great place to get questions
+                        answered. Or, you can request assistance from our support team directly within the
+                        Skills Boost platform.
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">What if there are no more seats in a game?</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">That happens sometimes! Seats are available on a first come, first
+                        serve basis. Sometimes additional seats open up, so keep an eye out for more
+                        opportunities to join if you miss the first round.
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">I've never used Skills Boost before. Help!</h3>
+                  </div>
+                  <div class="answer">
+                     <p class="answer-text">Welcome, I'm so glad you're here. <a style="color:#1e8e3e"
+                        href="https://www.cloudskillsboost.google/catalog_lab/1281?utm_source=qwiklabs&utm_medium=lp&utm_campaign=a23">This
+                        tour of Google Cloud and the Skills Boost platform</a> will help you get oriented.
+                        It's available at no cost.
+                     </p>
+                  </div>
+               </div>
+               <div class="faq">
+                  <div class="question">
+                     <h3 class="question-text">Can I share or gift my Arcade points with someone else?</h3>
+                  </div>
+                  <div class=" answer answerO">
+                     <p class="answer-text">No. Because points are based on your learning record, they stick with
+                        you. But if you're interested in giving, please do check out charitable options when the
+                        prize counter opens.
+                     </p>
+                  </div>
+                  <div class=" answer answerTrasl">
+                     <p class="answer-text">XYCVVHGGHBJNHJB HJGHVGHBJGHJB VBVCFGHBN GFC
+                     </p>
+                  </div>
+               </div>
+            </div>
+            <div class="imageEmpty">
+               <img src="https://i.ibb.co/RBcL936/Emptyimage.png" alt="Emptyimage">
+            </div>
+         </section>
+      </div>
+      <!-- Footer -->
+      <div class="container-fluid pt-4" style="background-color: #19283C;">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="content text-center">
+                  <h3 class="card-title" style="font-size: 20px;"> Follow us on social media! </h3>
+               </div>
+            </div>
+         </div>
+         <div class="row mt-3" style="height: 100px;">
+            <div class="col-md-12">
+               <footer class="footer text-center">
+                  <div>
+                     <ul>
+                        <li class="footer-li">
+                           <a style="text-decoration:none" href="https://www.instagram.com/qwiklabs/?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">Instagram |</a> 
+                        </li>
+                        <li class="footer-li">
+                           <a style="text-decoration:none" href="https://www.facebook.com/qwiklabs?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">Facebook |</a> 
+                        </li>
+                        <li class="footer-li">
+                           <a style="text-decoration:none" href="https://twitter.com/qwiklabs?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">Twitter |</a> 
+                        </li>
+                        <li class="footer-li">
+                           <a style="text-decoration:none" href="https://www.linkedin.com/company/qwiklabs-inc-/?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">LinkedIn |</a> 
+                        </li>
+                        <li class="footer-li">
+                           <a style="text-decoration:none" href="https://www.youtube.com/channel/UCgadTofKslPYREQE8TjY7AA/featured?utm_source=qwiklabs&utm_medium=lp&utm_campaign=arcade23">YouTube</a> 
+                        </li>
+                     </ul>
+                  </div>
+               </footer>
+            </div>
+         </div>
+      </div>
+      <!-- Footer ends here -->
+      
+      <script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+      
+      <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+      <script type='text/javascript'
+         src='https://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
+      <script
+         type='text/javascript'>(function ($) { window.fnames = new Array(); window.ftypes = new Array(); fnames[0] = 'EMAIL'; ftypes[0] = 'email'; fnames[1] = 'FNAME'; ftypes[1] = 'text'; fnames[2] = 'LNAME'; ftypes[2] = 'text'; fnames[3] = 'ADDRESS'; ftypes[3] = 'address'; fnames[4] = 'PHONE'; ftypes[4] = 'phone'; fnames[5] = 'BIRTHDAY'; ftypes[5] = 'birthday'; fnames[6] = 'MMERGE6'; ftypes[6] = 'text'; fnames[7] = 'MMERGE7'; ftypes[7] = 'text'; fnames[8] = 'MMERGE8'; ftypes[8] = 'text'; fnames[9] = 'MMERGE9'; ftypes[9] = 'text'; fnames[10] = 'MMERGE10'; ftypes[10] = 'text'; fnames[11] = 'MMERGE11'; ftypes[11] = 'text'; fnames[12] = 'MMERGE12'; ftypes[12] = 'text'; fnames[13] = 'MMERGE13'; ftypes[13] = 'text'; fnames[14] = 'MMERGE14'; ftypes[14] = 'number'; fnames[15] = 'MMERGE15'; ftypes[15] = 'radio'; }(jQuery)); var $mcj = jQuery.noConflict(true);</script>
+      <script>
+         const faqs = document.querySelectorAll('.faq');
+         const searchInput = document.getElementById('search');
+         faqs.forEach(faq => {
+             faq.addEventListener("click", () => {
+                 faq.classList.toggle("active")
+             })
+         })
+         searchInput.addEventListener("keyup", function (event) {
+             let searchString = event.target.value.toLowerCase();
+             faqs.forEach(item => {
+                 item.querySelector('.question-text').textContent.toLowerCase().includes(searchString) || item.querySelector('.answer-text').textContent.toLowerCase().includes(searchString) ? (item.style.display = "") : (item.style.display = "none");
+             })
+         })
+         function changeVisibility() {
+             var widget = document.querySelector(".faqSection");
+             var emptyImagevar = document.querySelector(".imageEmpty");
+         
+             widget.style.display = "none";
+             emptyImagevar.style.display = "block";
+         }
+      </script>
+      <!--End mc_embed_signup--> 
+      <script>
+         document.addEventListener("DOMContentLoaded", function() {
+         var form = document.getElementById("myForm");
+         form.addEventListener("submit", function(e) {
+         e.preventDefault(); // Prevent the default form submission
+         var resultDiv = document.getElementById('result');
+         var spinner = resultDiv.querySelector('.spinner-border');
+         spinner.style.display = 'inline-block';
+         var formData = new FormData(form);
+         var skillBadgeCount;
+         var arcadeBadgeCount;
+         var skillBadgePoints;
+         var totalPoints;
+         
+         // Send the form data to the Google Apps Script
+         var xhr = new XMLHttpRequest();
+         xhr.open(form.method, form.action);
+         xhr.onload = function() {
+         try {
+         if (xhr.status === 200) {
+           var contentType = xhr.getResponseHeader("Content-Type");
+           var response;
+         
+           if (contentType.includes("application/json")) {
+             response = JSON.parse(xhr.responseText);
+             skillBadgeCount = response.skillBadges
+             arcadeBadgeCount = response.arcadeBadges;
+             skillBadgePoints = Math.trunc(skillBadgeCount / 3);
+             totalPoints = skillBadgePoints+arcadeBadgeCount;
+             const code = `
+         <div class="text-primary mt-4 container">
+         <div class="row">
+         <div class="col-md-3">
+             <div style="position: relative; display: inline-block; text-align: center;">
+                 <p>Skill Badges</p>
+                 <img src="https://i.ibb.co/Sc3wx7S/GC-arcade-skill-badge.png" alt="skillbadge" class="img-fluid" style="width: 250px;padding-top: 10px;">
+                 <div id="result1">
+                     <p style="padding-top: 8px;">= ${skillBadgePoints} points</p>
+                 </div>
+             </div>
+         </div>
+         <div class="col-md-2 d-flex justify-content-center align-items-center">
+             <div>
+                 <h3 class="card-title">+</h3>
+             </div>
+         </div>
+         <div class="col-md-3">
+             <div style="position: relative; display: inline-block; text-align: center;">
+                 <p>Arcade and Trivia Badges</p>
+                 <img src="https://i.ibb.co/dpRNn04/Coin-Image-removebg-preview.png" alt="skillbadge" class="img-fluid" style="width: 180px;">
+                 <div id="result2">
+                     <p>= ${arcadeBadgeCount} points</p>
+                 </div>
+             </div>
+         </div>
+         <div class="col-md-2 d-flex justify-content-center align-items-center">
+             <div class="d-flex align-items-center">
+                 <p class="card-title">=</p>&nbsp;&nbsp;&nbsp;&nbsp;
+                 <p class="card-title">${totalPoints} points</p>
+             </div>
+         </div>
+         </div>
+         <p class="text-center"><span style="color: #FFD548;">Please note:</span> If you are part of the Arcade Facilitator program and have earned any milestones, then please see how your points will be calculated here: <a href="https://rsvp.withgoogle.com/events/arcade-facilitator/points-system">https://rsvp.withgoogle.com/events/arcade-facilitator/points-system</a>. Additionally, please take note that the points mentioned above do not include any Bonus Arcade Points that you might have accumulated from August '23: Skill Badge Monsoon; these points will be credited directly to your prize counter.</p>
+         </div>
+         `;
+             document.getElementById("result").innerHTML = code;
+           } else {
+             response = xhr.responseText;
+             console.log(response);
+             // Process the text response as needed
+             document.getElementById("result").innerHTML = '<p>' + response;
+           }
+         } else {
+           // Handle errors
+           throw new Error("An error occurred.");
+         }
+         } catch (error) {
+         console.error(error);
+         document.getElementById("result").textContent = "An error occurred.";
+         } finally {
+         spinner.style.display = 'none'; // Hide the spinner after receiving the response
+         }
+         };
+         xhr.send(formData);
+         });
+         });
+      </script>
+      <script>
+         window.onscroll = function() {
+         showScrollButton();
+         };
+         
+         function showScrollButton() {
+         var scrollBtn = document.getElementById("scrollBtn");  
+          if (document.body.clientWidth > 600) {
+           scrollBtn.classList.remove("show");
+         }   
+         else if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+           scrollBtn.classList.add("show");
+         }  
+         else {
+           scrollBtn.classList.remove("show");
+         }
+         }
+         
+         function scrollToTop(id) {
+           
+            if (id == "top"){
+               document.body.scrollTop = 0; // For Safari
+               document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+           }
+           else{
+               var element = document.getElementById(id);
+                 if (element) {
+                   element.scrollIntoView();
+                 }
+           }
+         }
+         
+      </script>
+      <script>
+         function myFunction() {
+           var x = document.getElementById("myTopnav");
+           if (x.className === "topnav") {
+             x.className += " responsive";
+           } else {
+             x.className = "topnav";
+           }
+           var appendedDivs = document.getElementsByClassName("hBW7Hb");
+ appendedDiv.style.display = "none";
+         }
+         
+      </script>
+      <script>
+         $(document).ready(function(){
+         console.log("ytytytg")
+        $(".spanishParentContainer").hide()
+         $(".buttonT").on("click", function(){
+            $(".spanishParentContainer").show()
+             $(".englishParentContainer").hide()
+             console.log("ghgahshajsg")
+         });
+      });
+       </script>
+
+       
+   </body>
+</html>
